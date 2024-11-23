@@ -9,6 +9,8 @@ $brand-theme: mat.define-light-theme((
   )
 ));
 
+@debug $brand-theme;
+
 @include mat.all-component-themes($brand-theme);
 
 html,
