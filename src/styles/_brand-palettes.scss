@@ -1,0 +1,51 @@
+@use '@angular/material' as mat;
+
+$brand-blue-palette: (
+  50: #e3f5fd,
+  100: #b7e5fa,
+  200: #8ad4f7,
+  300: #62c4f2,
+  400: #4cb7ef,
+  500: #40aaec,
+  600: #3b9cdd,
+  700: #3589c9,
+  800: #3178b5,
+  900: #285892,
+  contrast: (
+    50: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+    100: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+    200: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+    300: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+    400: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+
+$brand-yellow-palette: (
+  50: #fffce9,
+  100: #fff7c9,
+  200: #fff2a7,
+  300: #ffed87,
+  400: #ffe76e,
+  500: #ffe259,
+  600: #ffd458,
+  700: #fbbd51,
+  800: #f6a74b,
+  900: #ec8240,
+  contrast: (
+    50: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+    100: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+    200: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+    300: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+    400: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+    500: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+    600: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+    700: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+    800: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+    900: white,
+  )
+);
