@@ -19,12 +19,22 @@ $merged-brand-theme: map.deep-merge($brand-theme, (
       background: mat.get-color-from-palette(mat.$blue-gray-palette, 50),
     ),
     foreground: (
-      text: mat.get-color-from-palette(mat.$blue-gray-palette, 900)
+      text: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+      // elevation: red
     )
   )
 ));
 
 @include mat.all-component-themes($merged-brand-theme);
+
+// .content {
+//   // @include mat.elevation(24, blue, 0.9);
+//   @include mat.overridable-elevation(24, blue);
+//   @include mat.elevation-transition(1s);
+//   &:hover {
+//     @include mat.overridable-elevation(4, green);
+//   }
+// }
 
 html,
 body {
