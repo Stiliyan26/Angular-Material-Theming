@@ -9,6 +9,11 @@ $brand-theme: mat.define-light-theme((
     primary: mat.define-palette(brand-palettes.$brand-blue-palette, 600, 200, 800),
     accent: mat.define-palette(brand-palettes.$brand-yellow-palette, 600, 300, 800),
     warn: mat.define-palette(mat.$red-palette),
+  ),
+  typography: mat.define-typography-config(
+    $font-family: 'Poppins',
+    $body-1: mat.define-typography-level(11px, 13px),
+    $headline-6: mat.define-typography-level(21px, 23px, 700, Arial)
   )
 ));
 
@@ -43,5 +48,5 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
