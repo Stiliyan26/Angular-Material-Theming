@@ -12,8 +12,7 @@ $brand-theme: mat.define-light-theme((
   ),
   typography: mat.define-typography-config(
     $font-family: 'Poppins',
-    $body-1: mat.define-typography-level(11px, 13px),
-    $headline-6: mat.define-typography-level(21px, 23px, 700, Arial)
+    $headline-6: mat.define-typography-level(21px, 23px, 700)
   )
 ));
 
@@ -31,6 +30,7 @@ $merged-brand-theme: map.deep-merge($brand-theme, (
 ));
 
 @include mat.all-component-themes($merged-brand-theme);
+@include mat.typography-hierarchy($merged-brand-theme);
 
 // .content {
 //   // @include mat.elevation(24, blue, 0.9);
