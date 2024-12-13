@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 @use './styles/brand-palettes';
+@use './app/banner/banner-theme.component' as banner;
 @use 'sass:map';
 
 @include mat.core();
@@ -31,6 +32,7 @@ $merged-brand-theme: map.deep-merge($brand-theme, (
 ));
 
 @include mat.all-component-themes($merged-brand-theme);
+@include banner.theme($brand-theme);
 @include mat.typography-hierarchy($merged-brand-theme);
 
 // .content {
