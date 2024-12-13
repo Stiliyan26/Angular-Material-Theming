@@ -1,0 +1,25 @@
+@use "@angular/material" as mat;
+
+@mixin color($color-config) {
+  $primary-color: mat.get-color-from-palette($color-config, primary);
+
+  app-banner {
+    .header {
+      background-color: mat.get-color-from-palette($primary-color, default);
+      color: mat.get-color-from-palette($primary-color, default-contrast);
+    }
+
+    .content {
+      background-color: mat.get-color-from-palette($primary-color, 100);
+      color: mat.get-color-from-palette($primary-color, "100-contrast");
+    }
+  }
+}
+
+@mixin theme($theme-config) {
+  $color-config: mat.get-color-config($theme-config);
+
+  @if $color-config != null {
+    @include color($color-config)
+  }
+}
