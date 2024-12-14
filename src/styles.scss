@@ -31,8 +31,17 @@ $merged-brand-theme: map.deep-merge($brand-theme, (
   )
 ));
 
-@include mat.all-component-themes($merged-brand-theme);
-@include banner.theme($brand-theme);
+// @include mat.all-component-themes($merged-brand-theme);
+@include mat.core-theme($merged-brand-theme);
+@include mat.card-theme($merged-brand-theme);
+@include mat.toolbar-theme($merged-brand-theme);
+@include mat.form-field-theme($merged-brand-theme);
+@include mat.select-theme($merged-brand-theme);
+@include mat.button-theme($merged-brand-theme);
+@include mat.icon-button-theme($merged-brand-theme);
+
+
+@include banner.theme($merged-brand-theme);
 @include mat.typography-hierarchy($merged-brand-theme);
 
 // .content {
