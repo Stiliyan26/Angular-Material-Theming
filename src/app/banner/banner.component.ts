@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-banner',
@@ -16,5 +17,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./banner.component.scss']
 })
 export class BannerComponent {
+  @Input() type: ThemePalette = 'warn';
 
+  @HostBinding('class') 
+  get hostClass() {
+    return `${this.type}-banner`
+  }
 }

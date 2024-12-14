@@ -1,19 +1,33 @@
 @use '@angular/material' as mat;
 @use '@material/density';
 
+@mixin _apply-banner-color($color) {
+  .header {
+    background-color: mat.get-color-from-palette($color, default);
+    color: mat.get-color-from-palette($color, default-contrast);
+  }
+
+  .content {
+    background-color: mat.get-color-from-palette($color, 100);
+    color: mat.get-color-from-palette($color, '100-contrast');
+  }
+}
+
 @mixin color($color-config) {
   $primary-color: mat.get-color-from-palette($color-config, primary);
+  $accent-color: mat.get-color-from-palette($color-config, accent);
+  $warn-color: mat.get-color-from-palette($color-config, warn);
 
-  app-banner {
-    .header {
-      background-color: mat.get-color-from-palette($primary-color, default);
-      color: mat.get-color-from-palette($primary-color, default-contrast);
-    }
+  app-banner.primary-banner {
+    @include _apply-banner-color($primary-color)
+  }
 
-    .content {
-      background-color: mat.get-color-from-palette($primary-color, 100);
-      color: mat.get-color-from-palette($primary-color, '100-contrast');
-    }
+  app-banner.accent-banner {
+    @include _apply-banner-color($accent-color)
+  }
+
+  app-banner.warn-banner {
+    @include _apply-banner-color($warn-color)
   }
 }
 
