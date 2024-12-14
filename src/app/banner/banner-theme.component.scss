@@ -16,10 +16,29 @@
   }
 }
 
+@mixin typography($typography-config) {
+  app-banner {
+    .header h2 {
+      // font-size: mat.font-size($typography-config, headline-6);
+      // font-family: mat.font-family($typography-config, headline-6);
+      @include mat.typography-level($typography-config, headline-6)
+    }
+
+    .content p {
+      @include mat.typography-level($typography-config, caption)
+    }
+  }
+}
+
 @mixin theme($theme-config) {
   $color-config: mat.get-color-config($theme-config);
+  $typography-config: mat.get-typography-config($theme-config);
 
   @if $color-config != null {
     @include color($color-config)
+  }
+
+  @if $typography-config != null {
+    @include typography($typography-config)
   }
 }
