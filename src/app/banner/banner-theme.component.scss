@@ -1,4 +1,5 @@
-@use "@angular/material" as mat;
+@use '@angular/material' as mat;
+@use '@material/density';
 
 @mixin color($color-config) {
   $primary-color: mat.get-color-from-palette($color-config, primary);
@@ -11,7 +12,7 @@
 
     .content {
       background-color: mat.get-color-from-palette($primary-color, 100);
-      color: mat.get-color-from-palette($primary-color, "100-contrast");
+      color: mat.get-color-from-palette($primary-color, '100-contrast');
     }
   }
 }
@@ -30,9 +31,24 @@
   }
 }
 
+@mixin density($density-scale) {
+  $density-config: (
+    height: (
+      default: 150px,
+      minimum: 90px,
+      maximum: 190px
+    )
+  );
+
+  app-banner {
+    height: density.prop-value($density-config, $density-scale, height);
+  }
+}
+
 @mixin theme($theme-config) {
   $color-config: mat.get-color-config($theme-config);
   $typography-config: mat.get-typography-config($theme-config);
+  $density-config: mat.get-density-config($theme-config);
 
   @if $color-config != null {
     @include color($color-config)
@@ -40,5 +56,9 @@
 
   @if $typography-config != null {
     @include typography($typography-config)
+  }
+
+  @if $density-config != null {
+    @include density($density-config)
   }
 }
