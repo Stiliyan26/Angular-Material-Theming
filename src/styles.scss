@@ -1,9 +1,11 @@
 @use '@angular/material' as mat;
 @use './styles/themes/light-theme.scss';
+@use './styles/themes/dark-theme.scss';
 
 @include mat.core();
 
 @include light-theme.apply-theme();
+@include dark-theme.apply-theme();
 
 html,
 body {

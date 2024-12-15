@@ -1,6 +1,7 @@
 @use '@angular/material' as mat;
 @use 'sass:map';
 @use '../app/banner/banner-theme.component.scss' as banner;
+@use '../app//app-theme.component.scss' as app-root;
 
 @function with-core-config($color-config) {
   @return (color: $color-config,
@@ -28,4 +29,5 @@
 
   //custom component themes...
   @include banner.theme($theme-config);
+  @include app-root.theme($theme-config);
 }
