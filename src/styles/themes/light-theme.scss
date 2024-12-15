@@ -1,0 +1,45 @@
+@use '@angular/material' as mat;
+@use '../brand-palettes';
+@use '../utils';
+
+$theme-color-config: (
+  primary: mat.define-palette(brand-palettes.$brand-blue-palette, 600, 200, 800),
+  accent: mat.define-palette(brand-palettes.$brand-yellow-palette, 600, 300, 800),
+  warn: mat.define-palette(mat.$red-palette),
+);
+
+$colors-to-patch: (
+  background: (
+    background: mat.get-color-from-palette(mat.$blue-gray-palette, 50),
+  ),
+  foreground: (
+    text: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+  )
+);
+
+$brand-theme: mat.define-light-theme(
+  utils.with-core-config($theme-color-config)
+);
+
+// $patched-brand-theme: (
+//   color: (
+//     primary: mat.define-palette(brand-palettes.$brand-blue-palette, 600, 200, 800),
+//     accent: mat.define-palette(brand-palettes.$brand-yellow-palette, 600, 300, 800),
+//     warn: mat.define-palette(mat.$red-palette),
+//     background: (
+//       background: mat.get-color-from-palette(mat.$blue-gray-palette, 50),
+//     ),
+//     foreground: (
+//       text: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+//     )
+//   ),
+//   typography: mat.define-typography-config(...),
+//   density: -1
+// );
+
+$patched-brand-theme: utils.patch-color-config($brand-theme, $colors-to-patch);
+
+@mixin apply-theme() {
+  @include utils.create-theme-bundle($patched-brand-theme);
+}
+

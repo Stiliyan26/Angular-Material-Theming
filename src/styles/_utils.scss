@@ -1,0 +1,31 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+@use '../app/banner/banner-theme.component.scss' as banner;
+
+@function with-core-config($color-config) {
+  @return (color: $color-config,
+    typography: mat.define-typography-config($font-family: 'Poppins',
+      $headline-6: mat.define-typography-level(21px, 23px, 700),
+    ),
+    density: -1)
+};
+
+@function patch-color-config($theme, $colors-to-patch: ()) {
+  @return map.deep-merge($theme, (
+    color: $colors-to-patch 
+  ))
+};
+
+@mixin create-theme-bundle($theme-config) {
+  @include mat.core-theme($theme-config);
+  @include mat.card-theme($theme-config);
+  @include mat.toolbar-theme($theme-config);
+  @include mat.form-field-theme($theme-config);
+  @include mat.select-theme($theme-config);
+  @include mat.button-theme($theme-config);
+  @include mat.icon-button-theme($theme-config);
+  @include mat.typography-hierarchy($theme-config);
+
+  //custom component themes...
+  @include banner.theme($theme-config);
+}
