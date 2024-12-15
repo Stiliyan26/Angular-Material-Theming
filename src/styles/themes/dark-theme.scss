@@ -6,8 +6,15 @@ $theme-color-config: (
   primary: mat.define-palette(brand-palettes.$brand-blue-palette, 700, 400, 900),
   accent: mat.define-palette(brand-palettes.$brand-yellow-palette, 700, 400, 900),
   warn: mat.define-palette(mat.$red-palette),
+  success: mat.define-palette(mat.$green-palette)
+);
+
+$colors-to-patch: (
+  success: mat.define-palette(mat.$green-palette)
 );
 
 $brand-theme: mat.define-dark-theme(utils.with-core-config($theme-color-config));
 
-@include utils.create-theme-bundle($brand-theme);
+$patched-brand-theme: utils.patch-color-config($brand-theme, $colors-to-patch);
+
+@include utils.create-theme-bundle($patched-brand-theme);

@@ -14,7 +14,8 @@ $colors-to-patch: (
   ),
   foreground: (
     text: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
-  )
+  ),
+  success: mat.define-palette(mat.$green-palette)
 );
 
 $brand-theme: mat.define-light-theme(

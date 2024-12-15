@@ -21,6 +21,7 @@
   $primary-color: mat.get-color-from-palette($color-config, primary);
   $accent-color: mat.get-color-from-palette($color-config, accent);
   $warn-color: mat.get-color-from-palette($color-config, warn);
+  $success-color: mat.get-color-from-palette($color-config, success);
 
   app-banner.primary-banner {
     @include _apply-banner-color($primary-color)
@@ -32,6 +33,12 @@
 
   app-banner.warn-banner {
     @include _apply-banner-color($warn-color)
+  }
+
+  @if ($success-color != null) {
+    app-banner.success-banner {
+      @include _apply-banner-color($success-color)
+    }
   }
 }
 
@@ -51,16 +58,14 @@
 
 @mixin density($density-scale) {
   $density-config: (
-    height: (
-      default: 150px,
+    height: (default: 150px,
       minimum: 90px,
-      maximum: 190px
-    )
+      maximum: 190px)
   );
 
-  app-banner {
-    height: density.prop-value($density-config, $density-scale, height);
-  }
+app-banner {
+  height: density.prop-value($density-config, $density-scale, height);
+}
 }
 
 @mixin theme($theme-config) {
