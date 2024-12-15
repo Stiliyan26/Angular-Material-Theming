@@ -6,6 +6,8 @@ export type ThemeUrls = `${Themes}-theme.css`;
 
 const lastLinkWithRel = `link[rel="stylesheet"]:last-of-type`;
 
+export const localStorageKeyName = 'preferredTheme';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -32,11 +34,23 @@ export class ThemeManager {
 
   // Sync it with select element on the page
   switchTheme(themeName: Themes) {
+    localStorage.setItem(localStorageKeyName, themeName);
     this.#themeSwitcher.next(themeName);
+  }
+
+  detectThemeAutomatically() {
+    localStorage.removeItem(localStorageKeyName);
+    this.#themeSwitcher.next(resolvePreferredTheme(this.#preferenceQuery));
   }
 }
 
 function resolvePreferredTheme(query: MediaQueryList): Themes {
+  const preferredTheme: string | null = localStorage.getItem(localStorageKeyName);
+
+  if (preferredTheme) {
+    return preferredTheme as Themes;
+  }
+
   return query.matches
     ? 'light'
     : 'dark'

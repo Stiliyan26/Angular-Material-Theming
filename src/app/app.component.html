@@ -21,18 +21,28 @@
   <h4>Elements</h4> -->
   <!-- <app-banner type="primary"></app-banner> -->
   <app-banner></app-banner>
-  
+
   <mat-form-field appearance="outline" class="theme-picker">
     <mat-label>Choose theme</mat-label>
 
-    <mat-select (selectionChange)="themeChanges($event)" [value]="themeManager.theme$ | async">
+    <mat-select (selectionChange)="themeChanges($event)"
+      [value]="themeManager.theme$ | async">
       <mat-option value="dark">Dark</mat-option>
       <mat-option value="light">Light</mat-option>
     </mat-select>
   </mat-form-field>
 
-  <button mat-raised-button color="accent" class="demo-button">Simple Demo
-    Button</button>
+  <button
+    *ngIf="isThemeSelected"
+    (click)="themeManager.detectThemeAutomatically()"
+    mat-stroked-button
+    style="margin-bottom: 10px">
+    Select Theme Automatically
+  </button>
+
+  <button mat-raised-button color="accent" class="demo-button">
+    Simple Demo Button
+  </button>
 
   <mat-card class="example-card">
     <mat-card-header>

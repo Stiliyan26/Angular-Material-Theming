@@ -6,8 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { BannerComponent } from './banner/banner.component';
-import { ThemeManager } from './core/theme-manager.service';
-import { AsyncPipe } from '@angular/common';
+import { localStorageKeyName, ThemeManager } from './core/theme-manager.service';
+import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -22,11 +22,16 @@ import { AsyncPipe } from '@angular/common';
     MatFormFieldModule,
     MatSelectModule,
     BannerComponent,
-    AsyncPipe
+    AsyncPipe,
+    NgIf
   ],
 })
 export class AppComponent {
   themeManager = inject(ThemeManager);
+
+  get isThemeSelected() {
+    return !!localStorage.getItem(localStorageKeyName);
+  }
 
   themeChanges(change: MatSelectChange)  {
     this.themeManager.switchTheme(change.value); // dark or light
