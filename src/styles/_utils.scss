@@ -5,16 +5,15 @@
 
 @function with-core-config($color-config) {
   @return (color: $color-config,
-    typography: mat.define-typography-config($font-family: 'Poppins',
+    typography: mat.define-typography-config(
+      $font-family: 'Poppins',
       $headline-6: mat.define-typography-level(21px, 23px, 700),
     ),
     density: -1)
 };
 
 @function patch-color-config($theme, $colors-to-patch: ()) {
-  @return map.deep-merge($theme, (
-    color: $colors-to-patch 
-  ))
+  @return map.deep-merge($theme, (color: $colors-to-patch ))
 };
 
 @mixin create-theme-bundle($theme-config) {
@@ -30,4 +29,14 @@
   //custom component themes...
   @include banner.theme($theme-config);
   @include app-root.theme($theme-config);
-}
+
+  .purple-sub-theme {
+    $purple-sub-theme: patch-color-config($theme-config, (
+          primary: mat.define-palette(mat.$deep-purple-palette),
+          accent: mat.define-palette(mat.$pink-palette),
+        ));
+
+    @include mat.button-color($purple-sub-theme);
+    @include banner.theme($purple-sub-theme);
+  }
+};
