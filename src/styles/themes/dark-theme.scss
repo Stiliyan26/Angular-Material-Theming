@@ -8,12 +8,6 @@ $theme-color-config: (
   warn: mat.define-palette(mat.$red-palette),
 );
 
+$brand-theme: mat.define-dark-theme(utils.with-core-config($theme-color-config));
 
-$brand-theme: mat.define-dark-theme(
-  utils.with-core-config($theme-color-config)
-);
-
-@mixin apply-theme() {
-  @include utils.create-theme-bundle($brand-theme);
-}
-
+@include utils.create-theme-bundle($brand-theme);

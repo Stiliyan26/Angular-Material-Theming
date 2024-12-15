@@ -9,13 +9,17 @@ $theme-color-config: (
 );
 
 $colors-to-patch: (
-  background: (background: mat.get-color-from-palette(mat.$blue-gray-palette, 50),
+  background: (
+    background: mat.get-color-from-palette(mat.$blue-gray-palette, 50),
   ),
-  foreground: (text: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
+  foreground: (
+    text: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
   )
 );
 
-$brand-theme: mat.define-light-theme(utils.with-core-config($theme-color-config));
+$brand-theme: mat.define-light-theme(
+  utils.with-core-config($theme-color-config)
+);
 
 // $patched-brand-theme: (
 //   color: (
