@@ -1,0 +1,19 @@
+@use '@angular/material' as mat;
+@use '../brand-palettes';
+@use '../utils';
+
+$theme-color-config: (
+  primary: mat.define-palette(brand-palettes.$brand-blue-palette, 700, 400, 900),
+  accent: mat.define-palette(brand-palettes.$brand-yellow-palette, 700, 400, 900),
+  warn: mat.define-palette(mat.$red-palette),
+);
+
+
+$brand-theme: mat.define-dark-theme(
+  utils.with-core-config($theme-color-config)
+);
+
+@mixin apply-theme() {
+  @include utils.create-theme-bundle($brand-theme);
+}
+
