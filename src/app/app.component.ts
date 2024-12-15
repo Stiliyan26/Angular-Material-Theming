@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { BannerComponent } from './banner/banner.component';
 import { ThemeManager } from './core/theme-manager.service';
 import { AsyncPipe } from '@angular/common';
@@ -27,4 +27,8 @@ import { AsyncPipe } from '@angular/common';
 })
 export class AppComponent {
   themeManager = inject(ThemeManager);
+
+  themeChanges(change: MatSelectChange)  {
+    this.themeManager.switchTheme(change.value); // dark or light
+  }
 }

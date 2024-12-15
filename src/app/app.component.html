@@ -25,7 +25,7 @@
   <mat-form-field appearance="outline" class="theme-picker">
     <mat-label>Choose theme</mat-label>
 
-    <mat-select [value]="themeManager.theme$ | async">
+    <mat-select (selectionChange)="themeChanges($event)" [value]="themeManager.theme$ | async">
       <mat-option value="dark">Dark</mat-option>
       <mat-option value="light">Light</mat-option>
     </mat-select>

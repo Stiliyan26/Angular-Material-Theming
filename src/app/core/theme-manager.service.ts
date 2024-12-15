@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { fromEvent, map, shareReplay, startWith, tap } from 'rxjs';
+import { fromEvent, map, merge, shareReplay, startWith, Subject, tap } from 'rxjs';
 
 export type Themes = 'light' | 'dark';
 export type ThemeUrls = `${Themes}-theme.css`;
@@ -12,19 +12,28 @@ const lastLinkWithRel = `link[rel="stylesheet"]:last-of-type`;
 export class ThemeManager {
   // Detect which theme user prefers
   #preferenceQuery = matchMedia(`(prefers-color-scheme: light)`);
+  #themeSwitcher = new Subject<Themes>();
 
   // Listen to the prefrens changes
-  theme$ = fromEvent<MediaQueryList>(this.#preferenceQuery, 'change')
+  #userThemePrefrence = fromEvent<MediaQueryList>(this.#preferenceQuery, 'change')
     .pipe(
       startWith(this.#preferenceQuery),
-      map(resolvePreferredTheme),
-      tap(theme => loadTheme(getThemeLinkElement(), theme)),
-      shareReplay() // Hot observable 
+      map(resolvePreferredTheme)
     );
 
-  // Sync it with select element on the page
+  theme$ = merge(
+    this.#userThemePrefrence,
+    this.#themeSwitcher
+  ).pipe(
+    // Load the corresponding css file (Theme)
+    tap(theme => loadTheme(getThemeLinkElement(), theme)),
+    shareReplay() // Hot observable 
+  );
 
-  // Load the corresponding css file (Theme)
+  // Sync it with select element on the page
+  switchTheme(themeName: Themes) {
+    this.#themeSwitcher.next(themeName);
+  }
 }
 
 function resolvePreferredTheme(query: MediaQueryList): Themes {
@@ -46,7 +55,7 @@ function getThemeLinkElement(): HTMLLinkElement {
   linkEl.setAttribute('id', 'appTheme');
 
   document.head.querySelector(lastLinkWithRel)?.after(linkEl);
-  
+
   return linkEl;
 }
 
