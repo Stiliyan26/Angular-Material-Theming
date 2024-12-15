@@ -1,57 +1,9 @@
 @use '@angular/material' as mat;
-@use './styles/brand-palettes';
-@use './app/banner/banner-theme.component' as banner;
-@use 'sass:map';
+@use './styles/themes/light-theme.scss';
 
 @include mat.core();
 
-$brand-theme: mat.define-light-theme((
-  color: (
-    primary: mat.define-palette(brand-palettes.$brand-blue-palette, 600, 200, 800),
-    accent: mat.define-palette(brand-palettes.$brand-yellow-palette, 600, 300, 800),
-    warn: mat.define-palette(mat.$red-palette),
-  ),
-  typography: mat.define-typography-config(
-    $font-family: 'Poppins',
-    $headline-6: mat.define-typography-level(21px, 23px, 700),
-  ),
-  density: -1
-));
-
-// @debug $brand-theme;
-$merged-brand-theme: map.deep-merge($brand-theme, (
-  color: (
-    background: (
-      background: mat.get-color-from-palette(mat.$blue-gray-palette, 50),
-    ),
-    foreground: (
-      text: mat.get-color-from-palette(mat.$blue-gray-palette, 900),
-      // elevation: red
-    )
-  )
-));
-
-// @include mat.all-component-themes($merged-brand-theme);
-@include mat.core-theme($merged-brand-theme);
-@include mat.card-theme($merged-brand-theme);
-@include mat.toolbar-theme($merged-brand-theme);
-@include mat.form-field-theme($merged-brand-theme);
-@include mat.select-theme($merged-brand-theme);
-@include mat.button-theme($merged-brand-theme);
-@include mat.icon-button-theme($merged-brand-theme);
-
-
-@include banner.theme($merged-brand-theme);
-@include mat.typography-hierarchy($merged-brand-theme);
-
-// .content {
-//   // @include mat.elevation(24, blue, 0.9);
-//   @include mat.overridable-elevation(24, blue);
-//   @include mat.elevation-transition(1s);
-//   &:hover {
-//     @include mat.overridable-elevation(4, green);
-//   }
-// }
+@include light-theme.apply-theme();
 
 html,
 body {
